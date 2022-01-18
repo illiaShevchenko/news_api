@@ -1,0 +1,9 @@
+#Django>=3.0,<4.0
+djangorestframework==3.13.0
+psycopg2>=2.8
+django-phone-field==1.8.1
+Pillow>=6.2.1
+pytz
+django-filter==21.1
+djangorestframework-simplejwt
+drf-yasg

@@ -1,0 +1,27 @@
+version: "3"
+   
+services:
+  db:
+    image: postgres:12
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_NAME=pos
+      - POSTGRES_USER=pos
+      - POSTGRES_PASSWORD=pos
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000 "
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=pos
+      - POSTGRES_USER=pos
+      - POSTGRES_PASSWORD=pos
+    depends_on:
+      - db
+
